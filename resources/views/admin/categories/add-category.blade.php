@@ -29,7 +29,18 @@
                     <strong>{{ $message }}</strong>
             </div>
             @endif
-              <form class="form-horizontal" method="post" action="{{ url('admin/add-category') }}" name="add_category" id="add_category" novalidate="novalidate">{{ csrf_field() }}
+
+            @if (count($errors) > 0)
+            <div class="alert alert-danger">
+              <strong>Whoops!</strong> There were some problems with your input.<br><br>
+              <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+              </ul>
+            </div>
+            @endif
+              <form class="form-horizontal" method="post" action="{{ url('admin/add-category') }}" name="add_category" id="add_category" novalidate="novalidate" enctype="multipart/form-data">{{ csrf_field() }}
               <div class="control-group">
                 <label class="control-label">Tên danh mục</label>
                 <div class="controls">
@@ -45,7 +56,7 @@
               <div class="control-group">
               <label class="control-label">Chọn ảnh đại diện</label>
               <div class="controls">
-                <div class="uploader" id="uniform-undefined"><input type="file" name="image" size="19" style="opacity: 0;"><span class="filename">Chưa có file nào được chọn</span><span class="action">Chọn File</span></div>
+                <div class="uploader" id="uniform-undefined"><input type="file" name="filename" size="19" style="opacity: 0;"><span class="filename">Chưa có file nào được chọn</span><span class="action">Chọn File</span></div>
               </div>
             </div>
               <div class="form-actions">
