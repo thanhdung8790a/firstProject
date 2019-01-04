@@ -40,39 +40,39 @@
               </ul>
             </div>
             @endif
-              <form class="form-horizontal" method="post" action="{{ url('admin/add-category') }}" name="add_category" id="add_category" novalidate="novalidate" enctype="multipart/form-data">{{ csrf_field() }}
+              <form class="form-horizontal" method="post" action="{{ url('admin/edit-category/'.$cat_detail->id) }}" name="add_category" id="add_category" novalidate="novalidate" enctype="multipart/form-data">{{ csrf_field() }}
               <div class="control-group">
-              <label class="control-label">Chọn thư mục cha</label>
-              <div class="controls">
+                <label class="control-label">Thư mục cha</label>
+                <div class="controls">
                 <select name="parent_id">
-                  <option value="0" selected="selected">Không</option>
                   @foreach($levels as $level)
-                  <option value="{{ $level->id }}">{{ $level->name }}</option>
+                  <option value="{{ $level->id }}" @if($level->id == $cat_detail->parent_id) selected @endif>{{ $level->name }}</option>
                   @endforeach
                 </select>
               </div>
-            </div>
+              </div>
               <div class="control-group">
                 <label class="control-label">Tên danh mục</label>
                 <div class="controls">
-                  <input type="text" name="cat_name" id="required" placeholder="Tên danh mục" value="">
+                  <input type="text" name="cat_name" id="required" placeholder="Tên danh mục" value="{{ $cat_detail->name }}">
                 </div>
               </div>
               <div class="control-group">
               	<label class="control-label">Mô tả</label>
 	            <div class="controls">
-	              <textarea class="textarea_editor span12" rows="6" name="cat_desc" id="required" placeholder="Enter text ..."></textarea>
+	              <textarea class="textarea_editor span12" rows="6" name="cat_desc" id="required" placeholder="Enter text ...">{{ $cat_detail->description }}</textarea>
 	            </div>
               </div>
               <div class="control-group">
               <label class="control-label">Chọn ảnh đại diện</label>
               <div class="controls">
-                <div class="uploader" id="uniform-undefined"><input type="file" name="filename" size="19" style="opacity: 0;"><span class="filename">Chưa có file nào được chọn</span><span class="action">Chọn File</span></div>
+                <div class="uploader" id="uniform-undefined">
+                  <input type="file" value="" name="filename" size="19" style="opacity: 0;"><span class="filename"></span><span class="action">Chọn File</span></div>
               </div>
             </div>
               <div class="form-actions">
               	<input type="reset" value="làm mới" class="btn btn-success">
-                <input type="submit" value="Thêm mới" class="btn btn-success">
+                <input type="submit" value="Cập nhật" class="btn btn-success">
               </div>
             </form>
             </div>
