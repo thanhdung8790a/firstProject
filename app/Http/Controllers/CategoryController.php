@@ -113,10 +113,10 @@ class CategoryController extends Controller
 				$sql_query = Category::where(['id' => $id])->delete();
 				if ($sql_query) {
 					return redirect('admin/category')
-							->with('flash_message_success','Xóa danh mục thất bại');
+							->with('flash_message_success','Xóa danh mục thành công');
 				}else{
 					return redirect('admin/category')
-							->with('flash_message_success','Xóa danh mục thành công');
+							->with('flash_message_success','Xóa danh mục thất bại');
 				}
 			}	
 		}	

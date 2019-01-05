@@ -5,8 +5,8 @@
 
 <div id="content">
   <div id="content-header">
-    <div id="breadcrumb"> <a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Thư mục</a> </div>
-    <h1>Danh sách thư mục</h1>
+    <div id="breadcrumb"> <a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Sản phẩm</a> </div>
+    <h1>Danh sách sản phẩm</h1>
   </div>
   <div class="container-fluid">
     <hr>
@@ -14,7 +14,7 @@
       <div class="span12">
         <div class="widget-box">
           <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
-            <h5>Danh sách thư mục</h5>
+            <h5>Danh sách sản phẩm</h5>
           </div>
           <div class="widget-content nopadding">
             @if ($message = Session::get('flash_message_error'))
@@ -44,31 +44,35 @@
               <thead>
                 <tr>
                   <th>ID</th>
-                  <th>Thư mục cha</th>
-                  <th>Tên thư mục</th>
-                  <th>Mô tả</th>
+                  <th>Danh mục</th>
+                  <th>Tên</th>
+                  <th>Mã sản phẩm</th>
+                  <th>Màu sắc</th>
+                  <th>Giá</th>
                   <th>Hình ảnh đại diện</th>
                   <th>Hành động</th>
                 </tr>
               </thead>
-              @if(count($cats) > 0)
+              @if(count($products) > 0)
               <tbody>
-                @foreach($cats as $cat)
+                @foreach($products as $pro)
                 <tr class="gradeX">
-                  <td>{{ $cat->id }}</td>
-                  <td>{{ $cat->parent_id }}</td>
-                  <td>{{ $cat->name }}</td>
-                  <td>{{ $cat->description }}</td>
-                  @if(empty($cat->url))
+                  <td>{{ $pro->id }}</td>
+                  <td>{{ $pro->category_name }}</td>
+                  <td>{{ $pro->product_name }}</td>
+                  <td>{{ $pro->product_code }}</td>
+                  <td>{{ $pro->product_color }}</td>
+                  <td>{{ $pro->product_price }}</td>                
+                  @if(empty($pro->product_image))
                   <td class="center">Chưa có ảnh</td>
                   @else  
-                  <td class="center"><img src="/uploads/thumbnail/{{ $cat->url }}"></td>
+                  <td class="center"><img src="/uploads/small/{{ $pro->product_image }}"></td>
                   @endif
                   <td class="center">
                     <div class="fr">
-                    <a href="{{ url('/admin/edit-category/'.$cat->id) }}" class="btn btn-primary btn-mini">Sửa</a>
+                    <a href="{{ url('/admin/edit-product/'.$pro->id) }}" class="btn btn-primary btn-mini">Sửa</a>
                      | 
-                    <a href="{{ url('/admin/delete-category/'.$cat->id) }}" class="btn btn-danger btn-mini" onclick="return confirm('Bạn có muốn xóa danh mục này?')">Xóa</a>
+                    <a href="{{ url('/admin/delete-product/'.$pro->id) }}" class="btn btn-danger btn-mini" onclick="return confirm('Bạn có muốn xóa sản phẩm này?')">Xóa</a>
                     </div>
                   </td>
                 </tr>

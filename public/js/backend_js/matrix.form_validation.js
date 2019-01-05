@@ -38,6 +38,19 @@ $(document).ready(function(){
 			cat_url:{
 				required:true,
 				minlength:2
+			},
+			product_name:{
+				required: true
+			},
+			product_code:{
+				required: true
+			},
+			product_color:{
+				required: true
+			},
+			product_price:{
+				required: true,
+				number: true
 			}
 		},
 		errorClass: "help-inline",

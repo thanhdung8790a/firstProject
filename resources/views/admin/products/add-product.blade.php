@@ -40,29 +40,44 @@
               </ul>
             </div>
             @endif
-              <form class="form-horizontal" method="post" action="{{ url('admin/add-category') }}" name="add_category" id="add_category" novalidate="novalidate" enctype="multipart/form-data">{{ csrf_field() }}
+              <form class="form-horizontal" method="post" action="{{ url('admin/add-product') }}" name="add_category" id="add_category" novalidate="novalidate" enctype="multipart/form-data">{{ csrf_field() }}
               <div class="control-group">
-              <label class="control-label">Chọn thư mục cha</label>
+              <label class="control-label">Chọn danh mục</label>
               <div class="controls">
-                <select name="parent_id" style="width: 220px;">
-                  <option value="0" selected="selected">Không</option>
-                  @foreach($levels as $level)
-                  <option value="{{ $level->id }}">{{ $level->name }}</option>
-                  @endforeach
+                <select name="category_id" style="width: 220px;">
+                  <?php echo $categories_dropdow; ?>
                 </select>
               </div>
-            </div>
+              </div>
               <div class="control-group">
-                <label class="control-label">Tên danh mục</label>
+                <label class="control-label">Tên danh sản phẩm</label>
                 <div class="controls">
-                  <input type="text" name="cat_name" id="cat_name" placeholder="Tên danh mục" value="">
+                  <input type="text" name="product_name" id="product_name" placeholder="Tên danh mục" value="">
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label">Mã sản phẩm</label>
+                <div class="controls">
+                  <input type="text" name="product_code" id="product_code" placeholder="Mã sản phẩm" value="">
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label">Màu sắc</label>
+                <div class="controls">
+                  <input type="text" name="product_color" id="product_color" placeholder="Màu sắc của sản phẩm" value="">
                 </div>
               </div>
               <div class="control-group">
               	<label class="control-label">Mô tả</label>
 	            <div class="controls">
-	              <textarea class="textarea_editor span12" rows="6" name="cat_desc" id="cat_desc" placeholder="Enter text ..."></textarea>
+	              <textarea class="textarea_editor span12" rows="6" name="product_desc" id="product_desc" placeholder="Enter text ..."></textarea>
 	            </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label">Giá sản phẩm</label>
+                <div class="controls">
+                  <input type="text" name="product_price" id="product_price" placeholder="Giá sản phẩm: 900" value="">
+                </div>
               </div>
               <div class="control-group">
               <label class="control-label">Chọn ảnh đại diện</label>
@@ -71,8 +86,12 @@
               </div>
             </div>
               <div class="form-actions">
-              	<input type="reset" value="làm mới" class="btn btn-success">
-                <input type="submit" value="Thêm mới" class="btn btn-success">
+                <div class="control-label">
+                  <input type="reset" value="làm mới" class="btn btn-success">
+                </div>
+              	<div class="control-label">
+                 <input type="submit" value="Thêm mới" class="btn btn-success"> 
+                </div>       
               </div>
             </form>
             </div>

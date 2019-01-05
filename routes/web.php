@@ -24,10 +24,16 @@ Route::group(['middleware'=> ['auth']], function(){
 	Route::match(['get', 'post'], '/admin/update-pwd', 'AdminController@updatePassword');
 
 	// Categories routes (Admin)
+	Route::get('/admin/category', 'CategoryController@index');
 	Route::match(['get', 'post'], '/admin/add-category', 'CategoryController@addCategory');
 	Route::match(['get', 'post'], '/admin/edit-category/{id}', 'CategoryController@editCategory');
 	Route::match(['get', 'post'], '/admin/delete-category/{id}', 'CategoryController@deleteCategory');
-	Route::get('/admin/category', 'CategoryController@index');
+
+	// Products routes (Admin)
+	Route::get('/admin/product', 'ProductController@index');
+	Route::match(['get', 'post'], '/admin/add-product', 'ProductController@addProduct');
+	Route::match(['get', 'post'], '/admin/edit-product/{id}', 'ProductController@editProduct');
+	Route::match(['get', 'post'], '/admin/delete-product/{id}', 'ProductController@deleteProduct');
 });
 
 
