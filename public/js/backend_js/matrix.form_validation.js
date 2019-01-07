@@ -170,4 +170,56 @@ $(document).ready(function(){
 	    min: jQuery.validator.format("Vui lòng nhập giá trị lớn hơn hoặc bằng {0}.")
 	});
 
+
+	$(".deleteRecord").click(function(){
+		var id = $(this).attr('rel1');
+		var deleteFunction = $(this).attr('rel2');
+		swal({   
+		    title: 'Are you sure?',
+			  text: "You won't be able to revert this!",
+			  type: 'warning',
+			  showCancelButton: true,
+			  confirmButtonColor: '#3085d6',
+			  cancelButtonColor: '#d33',
+			  confirmButtonText: 'Yes, delete it!'
+		}, 
+	    function(){   
+	    	window.location.href="/admin/"+deleteFunction+"/"+id;
+	  	});
+	});
+
+	// Xoa product bang cach chon checkbox id
+	$(".deleteChoceProduct").click(function(event){
+	    event.preventDefault();
+	    var productIDs = $("#tblProduct input:checkbox:checked").map(function(){
+	      return $(this).val();
+	    }).get();
+	    alert(productIDs);
+	    $.ajax({
+	       type:'get',
+	       url: '/admin/delete-products',
+	       data: { productIDs: productIDs },
+	       success:function(resp){
+				if (resp=="false") {
+					alert("Xóa không thành công");			
+				}else{
+					swal({   
+					  title: 'Thong bao',
+					  text: "Ban da xoa thanh cong cac san pham da chon",
+					  type: 'warning',
+					  confirmButtonColor: '#3085d6',
+					  cancelButtonColor: '#d33',
+					  confirmButtonText: 'Tro ve trang san pham'
+					},
+					function(){
+						window.location.href = "/admin/product";
+					});	
+				}
+			}, error:function(){
+				alert("Error");
+			}
+	    });
+	});
+
 });
+

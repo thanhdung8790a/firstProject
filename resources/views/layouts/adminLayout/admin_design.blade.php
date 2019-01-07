@@ -11,6 +11,8 @@
 <link rel="stylesheet" href="{{ asset('css/backend_css/uniform.css') }}" />
 <link rel="stylesheet" href="{{ asset('css/backend_css/datepicker.css') }}" />
 <link rel="stylesheet" href="{{ asset('css/backend_css/select2.css') }}" />
+<!-- <link rel="stylesheet" href="{{ asset('css/backend_css/sweetalert.css') }}" /> -->
+<link rel="stylesheet" href="{{ asset('css/backend_css/sweetalert.css') }}" />
 <link rel="stylesheet" href="{{ asset('css/backend_css/matrix-style.css') }}" />
 <link rel="stylesheet" href="{{ asset('css/backend_css/matrix-media.css') }}" />
 <link rel="stylesheet" href="{{ asset('css/backend_css/bootstrap-wysihtml5.css') }}" />
@@ -55,7 +57,11 @@
 <script src="{{ asset('js/backend_js/jquery.peity.min.js') }}"></script> 
 <script src="{{ asset('js/backend_js/bootstrap-wysihtml5.js') }}"></script>
 <script src="{{ asset('js/backend_js/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('js/backend_js/matrix.tables.js') }}"></script> 
+<script src="{{ asset('js/backend_js/matrix.tables.js') }}"></script>
+<script src="{{ asset('js/backend_js/sweetalert.min.js') }}"></script> 
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/5.0.7/sweetalert2.min.js"></script> -->
+
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script> -->
 <script>
     $('.textarea_editor').wysihtml5();
 </script>

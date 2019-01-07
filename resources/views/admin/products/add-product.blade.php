@@ -5,8 +5,8 @@
 
 <div id="content">
   <div id="content-header">
-    <div id="breadcrumb"> <a href="{{ url('admin/dashboard') }}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a><a href="{{ url('admin/category') }}" class="current">Danh mục</a> </div>
-    <h1>Thêm mới danh mục</h1>
+    <div id="breadcrumb"> <a href="{{ url('admin/dashboard') }}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a><a href="{{ url('admin/product') }}" class="current">Sản phẩm</a> </div>
+    <h1>Thêm mới sản phẩm</h1>
   </div>
   <div class="container-fluid"><hr>
     <div class="row-fluid">
@@ -14,7 +14,7 @@
         <div class="span12">
           <div class="widget-box">
             <div class="widget-title"> <span class="icon"> <i class="icon-info-sign"></i> </span>
-              <h5>Thêm mới danh mục</h5>
+              <h5>Thêm mới sản phẩm</h5>
             </div>
             <div class="widget-content nopadding">
             @if ($message = Session::get('flash_message_error'))
@@ -87,7 +87,7 @@
             </div>
               <div class="form-actions">
                 <div class="control-label">
-                  <input type="reset" value="làm mới" class="btn btn-success">
+                  <input type="reset" value="làm mới" class="btn btn-primary">
                 </div>
               	<div class="control-label">
                  <input type="submit" value="Thêm mới" class="btn btn-success"> 

@@ -32,7 +32,6 @@
 
             @if (count($errors) > 0)
             <div class="alert alert-danger">
-              <strong>Whoops!</strong> There were some problems with your input.<br><br>
               <ul>
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
@@ -40,9 +39,14 @@
               </ul>
             </div>
             @endif
+
+            @if (session('error'))
+              <div class="alert alert-danger">{{ session('error') }}</div>
+            @endif
+
               <form class="form-horizontal" method="post" action="{{ url('admin/add-category') }}" name="add_category" id="add_category" novalidate="novalidate" enctype="multipart/form-data">{{ csrf_field() }}
               <div class="control-group">
-              <label class="control-label">Chọn thư mục cha</label>
+              <label class="control-label">Chọn danh mục cha</label>
               <div class="controls">
                 <select name="parent_id" style="width: 220px;">
                   <option value="0" selected="selected">Không</option>
@@ -71,8 +75,12 @@
               </div>
             </div>
               <div class="form-actions">
-              	<input type="reset" value="làm mới" class="btn btn-success">
-                <input type="submit" value="Thêm mới" class="btn btn-success">
+                <div class="control-label">
+                  <input type="reset" value="làm mới" class="btn btn-primary">
+                </div>
+                <div class="control-label">
+                 <input type="submit" value="Thêm mới" class="btn btn-success"> 
+                </div>       
               </div>
             </form>
             </div>

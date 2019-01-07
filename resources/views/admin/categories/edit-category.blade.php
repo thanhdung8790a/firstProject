@@ -6,7 +6,7 @@
 <div id="content">
   <div id="content-header">
     <div id="breadcrumb"> <a href="{{ url('admin/dashboard') }}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a><a href="{{ url('admin/category') }}" class="current">Danh mục</a> </div>
-    <h1>Thêm mới danh mục</h1>
+    <h1>Sửa danh mục</h1>
   </div>
   <div class="container-fluid"><hr>
     <div class="row-fluid">
@@ -14,7 +14,7 @@
         <div class="span12">
           <div class="widget-box">
             <div class="widget-title"> <span class="icon"> <i class="icon-info-sign"></i> </span>
-              <h5>Thêm mới danh mục</h5>
+              <h5>Sửa danh mục</h5>
             </div>
             <div class="widget-content nopadding">
             @if ($message = Session::get('flash_message_error'))
@@ -44,7 +44,7 @@
               <div class="control-group">
                 <label class="control-label">Thư mục cha</label>
                 <div class="controls">
-                <select name="parent_id">
+                <select name="parent_id" style="width: 220px;">
                   @foreach($levels as $level)
                   <option value="{{ $level->id }}" @if($level->id == $cat_detail->parent_id) selected @endif>{{ $level->name }}</option>
                   @endforeach
@@ -65,14 +65,26 @@
               </div>
               <div class="control-group">
               <label class="control-label">Chọn ảnh đại diện</label>
-              <div class="controls">
+              <div class="controls" style="width: 300px;">
                 <div class="uploader" id="uniform-undefined">
-                  <input type="file" value="" name="filename" size="19" style="opacity: 0;"><span class="filename"></span><span class="action">Chọn File</span></div>
+                  <input type="hidden" value="{{ $cat_detail->url }}" name="current_image">
+                  <input type="file" value="" name="filename" size="19" style="opacity: 0;">
+                  <span class="filename"></span><span class="action">Chọn File</span>
+                </div>                
               </div>
+             <div class="controls" style="width: 300px;">
+              @if($cat_detail->url)
+                <img src="/uploads/thumbnail/{{ $cat_detail->url }}" style="" alt="">
+              @endif
+             </div>
             </div>
               <div class="form-actions">
-              	<input type="reset" value="làm mới" class="btn btn-success">
-                <input type="submit" value="Cập nhật" class="btn btn-success">
+                <div class="control-label">
+                  <input type="reset" value="làm mới" class="btn btn-primary">
+                </div>
+                <div class="control-label">
+                 <input type="submit" value="Cập nhật" class="btn btn-success"> 
+                </div>       
               </div>
             </form>
             </div>

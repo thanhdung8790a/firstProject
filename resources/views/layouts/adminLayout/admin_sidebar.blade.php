@@ -2,31 +2,19 @@
 <div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a>
   <ul>
     <li class="active"><a href="index.html"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
-    <li class="submenu"> <a href="#"><i class="icon icon-th-list"></i> <span>Thư mục</span> <span class="label label-important">2</span></a>
+    <li class="submenu"> <a href="{{ url('admin/category') }}"><i class="icon icon-th-list"></i> <span>Danh mục</span> <span class="label label-important">2</span></a>
       <ul>
         <li><a href="{{ url('admin/add-category') }}">Thêm mới</a></li>
-        <li><a href="{{ url('admin/category') }}">Danh sách thư mục</a></li>
+        <li><a href="{{ url('admin/category') }}">Danh sách danh mục</a></li>
       </ul>
     </li>
-    <li><a href="buttons.html"><i class="icon icon-tint"></i> <span>Buttons &amp; icons</span></a></li>
+    <li class="submenu"> <a href="{{ url('admin/product') }}"><i class="icon icon-pencil"></i> <span>Sản phẩm</span> <span class="label label-important">2</span></a>
+      <ul>
+        <li><a href="{{ url('admin/add-product') }}">Thêm mới</a></li>
+        <li><a href="{{ url('admin/product') }}">Danh sách sản phẩm</a></li>
+      </ul>
+    </li>
     <li><a href="interface.html"><i class="icon icon-pencil"></i> <span>Eelements</span></a></li>
-    <li class="submenu"> <a href="#"><i class="icon icon-file"></i> <span>Addons</span> <span class="label label-important">5</span></a>
-      <ul>
-        <li><a href="index2.html">Dashboard2</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
-        <li><a href="calendar.html">Calendar</a></li>
-        <li><a href="invoice.html">Invoice</a></li>
-        <li><a href="chat.html">Chat option</a></li>
-      </ul>
-    </li>
-    <li class="submenu"> <a href="#"><i class="icon icon-info-sign"></i> <span>Error</span> <span class="label label-important">4</span></a>
-      <ul>
-        <li><a href="error403.html">Error 403</a></li>
-        <li><a href="error404.html">Error 404</a></li>
-        <li><a href="error405.html">Error 405</a></li>
-        <li><a href="error500.html">Error 500</a></li>
-      </ul>
-    </li>
     <li class="content"> <span>Monthly Bandwidth Transfer</span>
       <div class="progress progress-mini progress-danger active progress-striped">
         <div style="width: 77%;" class="bar"></div>
