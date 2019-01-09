@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Auth;
 use Session;
 use App\User;
+use App\Category;
+use App\Product;
 use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
@@ -16,23 +18,30 @@ class AdminController extends Controller
     		if ( \Auth::attempt(['email'=>$data['email'], 'password'=>$data['password'], 'admin'=>'1']) ) {
     			// echo "Success"; die();
     			// Tao mot adminSession voi gia tri la $data['email']
-    			// Session::put('adminSession', $data['email']);
+    			Session::put('admin_session', $data['email']);
     			return redirect('admin/dashboard');
     			// return redirect::action('AdminController@dashboard');
     		}else{
-    			return redirect('/admin')->with('flash_message_error', 'Email hoặc mật khẩu không đúng');
+    			return redirect('/admin')->with('flash_message_error', 'Email hoặc mật khẩu không đúng! Vui lòng thử lại.');
     		}
     	}
     	return view('admin.admin_login');
     }
 
     public function dashboard(){
-    	// if ( Session::has('adminSession') ) {
-    	// 	# code...
-    	// }else{
-    	// 	return redirect('/admin')->with('flash_message_error', 'Bạn chưa đăng nhập! Vui lòng đăng nhập.');
-    	// }
-    	return view('admin.dashboard');
+    	if ( Session::has('admin_session') ) {
+            $user = User::where(['email'=>Session::get('admin_session')])->first();
+            $count_user = count(User::get());
+            $count_category = count(Category::get());
+            $count_product = count(Product::get());
+            // echo "<pre>"; print_r($count_category); die;
+            return view('admin.dashboard')->with(compact('user'))
+                                        ->with(compact('count_user'))
+                                        ->with(compact('count_category'))
+                                        ->with(compact('count_product'));
+    	}else{
+    		return redirect('/admin')->with('flash_message_error', 'Bạn chưa đăng nhập! Vui lòng đăng nhập.');
+    	}
     }
 
     public function settings(){

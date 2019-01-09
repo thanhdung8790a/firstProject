@@ -5,7 +5,7 @@
 
 <div id="content">
   <div id="content-header">
-    <div id="breadcrumb"> <a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Sản phẩm</a> </div>
+    <div id="breadcrumb"> <a href="{{ url('/admin/dashboard') }}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a class="current">Sản phẩm</a> </div>
     <h1>Danh sách sản phẩm</h1>
   </div>
   <div class="container-fluid">
@@ -71,8 +71,8 @@
                   @else  
                   <td class="center"><img src="/uploads/small/{{ $pro->product_image }}"></td>
                   @endif
-                  <td class="center" style="width: 240px;">
-                    <a href="{{ url('/admin/add-attributes/'.$pro->id) }}" class="btn btn-warning btn-mini">Thêm thuộc tính</a>
+                  <td class="center" style="width: 210px;">
+                    <a href="{{ url('/admin/add-attributes/'.$pro->id) }}" class="btn btn-warning btn-mini">Thuộc tính</a>
                     |
                     <a href="#myModal{{ $pro->id }}" data-toggle="modal" class="btn btn-mini btn-success">Xem</a>
                      |

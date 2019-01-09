@@ -5,7 +5,7 @@
 
 <div id="content">
   <div id="content-header">
-    <div id="breadcrumb"> <a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Danh mục</a> </div>
+    <div id="breadcrumb"> <a href="{{ url('admin/dashboard') }}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a class="current">Danh mục</a> </div>
     <h1>Danh sách danh mục</h1>
   </div>
   <div class="container-fluid">

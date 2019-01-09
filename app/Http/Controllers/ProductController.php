@@ -137,8 +137,10 @@ class ProductController extends Controller
     		if ( !empty($id) ) {
     			// lay ra chi tiet san pham theo id
     			$product_detail = Product::where(['id'=>$id])->first();
-    			// echo "<pre>"; print_r($product_detail);die;
-    			return view('admin.products.add-attributes')->with(compact('product_detail'));
+    			$product_attributes = ProductsAttribute::where(['product_id'=>$id])->get();
+    			// echo "<pre>"; print_r($product_attributes);die;
+    			return view('admin.products.add-attributes')->with(compact('product_detail'))
+    														->with(compact('product_attributes'));
     		}
     	}
     }
@@ -262,6 +264,25 @@ class ProductController extends Controller
 					}else{
 						return redirect()->back()
 								->with('flash_message_success','Xóa ảnh đại diện thất bại');
+					}
+				}catch(QueryException $e){
+					dd($e->getMessage());
+				}
+			}
+		}
+	}
+
+	public function deleteProductAttributes(Request $request, $id = null){
+		if ( $request->isMethod('get') ) {
+			if (!empty($id)) {
+				$sql_query = ProductsAttribute::where(['id' => $id])->delete();
+				try{
+					if ($sql_query) {
+						return redirect()->back()
+							->with('flash_message_success','Xóa thuộc tính sản phẩm thành công');
+					}else{
+						return redirect()->back()
+								->with('flash_message_success','Xóa thuộc tính sản phẩm thất bại');
 					}
 				}catch(QueryException $e){
 					dd($e->getMessage());

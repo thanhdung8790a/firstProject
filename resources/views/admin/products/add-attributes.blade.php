@@ -87,6 +87,41 @@
                 </div>       
               </div>
             </form>
+            <div class="widget-title"> <span class="icon"> <i class="icon-info-sign"></i> </span>
+              <h5>Thuộc tính sản phẩm</h5>
+            </div>
+            <div class="control-group">
+                  <table class="table table-bordered" style="margin-top: 10px;">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>ID Sản phẩm</th>
+                        <th>SKU</th>
+                        <th>SIZE</th>
+                        <th>PRICE</th>
+                        <th>STOCK</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @if(count($product_attributes) > 0)
+                      @foreach($product_attributes as $value)
+                      <tr>
+                        <th style="background: white;">{{ $value->id }}</th>
+                        <th style="background: white;">{{ $value->product_id }}</th>
+                        <th style="background: white;">{{ $value->sku }}</th>
+                        <th style="background: white;">{{ $value->size }}</th>
+                        <th style="background: white;">{{ $value->price }}</th>
+                        <th style="background: white;">{{ $value->stock }}</th>
+                        <th style="background: white; width: 140px;">
+                          <a rel1="{{ $value->id }}" rel2="delete-product-attributes" href="javascript:" class="add_button btn btn-mini btn-danger deleteRecord" title="Xóa thuộc tính sản phẩm">Xóa</a>
+                        </th>
+                      </tr>
+                      @endforeach
+                      @endif
+                    </tbody>
+                  </table>
+              </div>
             </div>
           </div>
         </div>
