@@ -71,7 +71,9 @@
                   @else  
                   <td class="center"><img src="/uploads/small/{{ $pro->product_image }}"></td>
                   @endif
-                  <td class="center" style="width: 130px;">
+                  <td class="center" style="width: 240px;">
+                    <a href="{{ url('/admin/add-attributes/'.$pro->id) }}" class="btn btn-warning btn-mini">Thêm thuộc tính</a>
+                    |
                     <a href="#myModal{{ $pro->id }}" data-toggle="modal" class="btn btn-mini btn-success">Xem</a>
                      |
                     <a href="{{ url('/admin/edit-product/'.$pro->id) }}" class="btn btn-mini btn-primary btn">Sửa</a>

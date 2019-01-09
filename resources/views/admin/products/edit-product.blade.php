@@ -80,16 +80,15 @@
                 </div>
               </div>
               <div class="control-group">
-              <label class="control-label">Chọn ảnh đại diện</label>
-              <div class="controls">
-                <input type="hidden" value="{{ $product_detail->product_image }}" name="product_image">
-                <div class="uploader" id="uniform-undefined"><input type="file" name="filename" size="19" style="opacity: 0;"><span class="filename">Chưa có file nào được chọn</span><span class="action">Chọn File</span></div>
+              <label  class="control-label">Chọn ảnh đại diện</label>
+              <div class="controls">                
+                <div class="uploader" id="uniform-undefined">
+                  <input type="hidden" value="{{ $product_detail->product_image }}" name="product_image">
+                  <input type="file" name="filename" size="19" style="opacity: 0;">
+                </div>
+                <img style="width: 40px;" src="/uploads/thumbnail/{{ $product_detail->product_image }}" style="" alt="">
+                <a class="btn btn-inverse btn-mini" href="{{ url('admin/deleteProductImage/'.$product_detail->id) }}">Xóa ảnh đại diện</a>
               </div>
-              <div class="controls" style="width: 300px;">
-              @if($product_detail->product_image)
-                <img src="/uploads/thumbnail/{{ $product_detail->product_image }}" style="" alt="">
-              @endif
-             </div>
             </div>
               <div class="form-actions">
                 <div class="control-label">

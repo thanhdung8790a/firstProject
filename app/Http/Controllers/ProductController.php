@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Category;
 use App\Product;
+use App\ProductsAttribute;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Image;
@@ -96,6 +97,50 @@ class ProductController extends Controller
     		endforeach;
     	}
     	return view('admin.products.add-product')->with(compact('categories_dropdow'));
+    }
+
+    public function addAttributes(Request $request, $id = null){
+    	// echo "addAttributes"; die;
+
+    	if ($request->isMethod('post')) {
+    		$data 		= $request->all();
+    		$product_id = $data['product_id'];
+    		$arrSKU 	= $data['sku'];
+    		$arrSize 	= $data['size'];
+    		$arrPrice 	= $data['price'];
+    		$arrStock 	= $data['stock'];
+
+    		foreach ($arrSKU as $key => $value) {
+    			if (!empty($value)) {
+    				$proAttribute = new ProductsAttribute;
+    				$proAttribute->product_id = $product_id;
+    				$proAttribute->sku = $value;
+    				$proAttribute->size = $arrSize[$key];
+    				$proAttribute->price = $arrPrice[$key];
+    				$proAttribute->stock = $arrStock[$key];
+    				try{
+						if ($proAttribute->save()) {
+							return redirect()->back()
+								->with('flash_message_success','Xóa sản phẩm thành công');
+						}else{
+							return redirect()->back()
+									->with('flash_message_success','Xóa sản phẩm thất bại');
+						}
+					}catch(QueryException $e){
+						dd($e->getMessage());
+					}
+    			}
+    		}
+    	}
+
+    	if ($request->isMethod('get')) {
+    		if ( !empty($id) ) {
+    			// lay ra chi tiet san pham theo id
+    			$product_detail = Product::where(['id'=>$id])->first();
+    			// echo "<pre>"; print_r($product_detail);die;
+    			return view('admin.products.add-attributes')->with(compact('product_detail'));
+    		}
+    	}
     }
 
     public function editProduct(Request $request, $id = null){
@@ -203,6 +248,25 @@ class ProductController extends Controller
 			echo "true"; die;
 		}else{
 			echo "false"; die;
+		}
+	}
+
+	public function deleteProductImage(Request $request, $id = null){
+		if ( $request->isMethod('get') ) {
+			if ( !empty($id) ) {
+				$sql_query = Product::where(['id' => $id])->update(['product_image' => '']);
+				try{
+					if ($sql_query) {
+						return redirect()->back()
+							->with('flash_message_success','Xóa ảnh đại diện thành công');
+					}else{
+						return redirect()->back()
+								->with('flash_message_success','Xóa ảnh đại diện thất bại');
+					}
+				}catch(QueryException $e){
+					dd($e->getMessage());
+				}
+			}
 		}
 	}
 }
