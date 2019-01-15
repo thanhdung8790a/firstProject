@@ -156,6 +156,8 @@ class ProductController extends Controller
 		        'filename' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
 	        ));
     		$data = $request->all();
+//    		$product_slug = str_slug($data['product_name'], '-');
+//    		echo $product_slug; die();
     		// echo "<pre>"; print_r($data); die;
     		// echo $data['category_id']; die;
 
@@ -191,7 +193,8 @@ class ProductController extends Controller
 			    					'product_code' 	=> $data['product_code'],
 			    					'product_desc' 	=> $data['product_desc'], 
 			    					'product_price' => $data['product_price'],
-			    					'product_image' => $product_image, 
+			    					'product_image' => $product_image,
+                                    'product_slug'  => str_slug($data['product_name'], '-'),
 			    					'product_color' => $data['product_color']]);
 			   	if($sql_query){
 			   		return redirect('/admin/product')

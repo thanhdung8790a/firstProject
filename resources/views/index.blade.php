@@ -13,13 +13,13 @@
 								<img src="/uploads/images/{{ $val->product_image }}" alt="{{ $val->product_image }}" />
 								<h2>{{ $val->product_price }} vnd</h2>
 								<p>{{ $val->product_name }}</p>
-								<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
+								<a href="products/{{$val->product_slug}}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
 							</div>
 							<div class="product-overlay">
 								<div class="overlay-content">
 									<h2>{{ $val->product_price }} vnd</h2>
 									<p>{{ $val->product_name }}</p>
-									<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
+									<a href="products/{{$val->product_slug}}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
 								</div>
 							</div>
 						</div>

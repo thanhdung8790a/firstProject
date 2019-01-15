@@ -16,6 +16,8 @@
 // });
 
 Route::get('/', 'IndexController@index');
+Route::get('/category/{id}', 'IndexController@category');
+Route::get('/products/{product_slug}', 'ProductController@showProductWithId');
 
 Auth::routes();
 
@@ -23,6 +25,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::match(['get', 'post'], '/admin', 'AdminController@login');
 
+// Router group admin
 Route::group(['middleware'=> ['auth']], function(){
 	Route::get('/admin/dashboard', 'AdminController@dashboard');
 	Route::get('/admin/settings', 'AdminController@settings');
