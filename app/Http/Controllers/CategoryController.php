@@ -48,6 +48,7 @@ class CategoryController extends Controller
 			$cat->name 			= $data['cat_name'];
 			$cat->description 	= $data['cat_desc'];
 			$cat->parent_id 	= $data['parent_id'];
+			$cat->slug          = str_slug($data['cat_name'], '-');
 			try{
 				if ( $cat->save() ) {
 					return back()->with('flash_message_success','Thêm mới thành công');
@@ -89,10 +90,11 @@ class CategoryController extends Controller
 	        // echo $nameImage; die;
 	        try {
 			    $sql_query = Category::where(['id' => $id])
-			    			->update(['name' => $data['cat_name'], 
-			    					'parent_id' => $data['parent_id'], 
-			    					'description' => $data['cat_desc'], 
-			    					'url' => $nameImage]);
+			    			->update(['name'        => $data['cat_name'],
+			    					'parent_id'     => $data['parent_id'],
+			    					'description'   => $data['cat_desc'],
+			    					'slug'          => str_slug($data['cat_name'], '-'),
+			    					'url'           => $nameImage]);
 			   	if($sql_query){
 			   		return redirect('/admin/category')->with('flash_message_success','Cập nhật thành công');
 			   	}else{

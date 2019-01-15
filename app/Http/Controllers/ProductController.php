@@ -34,11 +34,11 @@ class ProductController extends Controller
     public function addProduct(Request $request){
     	if( $request->isMethod('post') ){
     		$this->validate($request, array(
-				'product_name' => 'required',
-				'product_code' => 'required',
+				'product_name'  => 'required',
+				'product_code'  => 'required',
 				'product_color' => 'required',
 				'product_price' => 'required|regex:/^\d*(\.\d{2})?$/',
-		        'filename' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+		        'filename'      => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
 	        ));
     		$data = $request->all();
     		// echo $data['product_price']; die;
@@ -73,11 +73,12 @@ class ProductController extends Controller
 			    if (empty($data['category_id'])) {
 			    	return back()->with('flash_message_error','Bạn chưa chọn danh mục');
 			    }else{
-			    	$pro->category_id = $data['category_id'];
-				    $pro->product_name = $data['product_name'];
-				    $pro->product_code = $data['product_code'];
+			    	$pro->category_id   = $data['category_id'];
+				    $pro->product_name  = $data['product_name'];
+				    $pro->product_code  = $data['product_code'];
 				    $pro->product_color = $data['product_color'];
-				    $pro->product_desc = $data['product_desc'];
+				    $pro->product_desc  = $data['product_desc'];
+                    $pro->product_slug  = str_slug($data['product_name'], '-') ;
 				    $pro->product_price = $data['product_price'];
 
 				    $pro->save();
@@ -113,11 +114,11 @@ class ProductController extends Controller
     		foreach ($arrSKU as $key => $value) {
     			if (!empty($value)) {
     				$proAttribute = new ProductsAttribute;
-    				$proAttribute->product_id = $product_id;
-    				$proAttribute->sku = $value;
-    				$proAttribute->size = $arrSize[$key];
-    				$proAttribute->price = $arrPrice[$key];
-    				$proAttribute->stock = $arrStock[$key];
+    				$proAttribute->product_id   = $product_id;
+    				$proAttribute->sku          = $value;
+    				$proAttribute->size         = $arrSize[$key];
+    				$proAttribute->price        = $arrPrice[$key];
+    				$proAttribute->stock        = $arrStock[$key];
     				try{
 						if ($proAttribute->save()) {
 							return redirect()->back()
@@ -149,11 +150,11 @@ class ProductController extends Controller
     	// echo "edit-product"; die;
     	if( $request->isMethod('post') ){
     		$this->validate($request, array(
-				'product_name' => 'required',
-				'product_code' => 'required',
+				'product_name'  => 'required',
+				'product_code'  => 'required',
 				'product_color' => 'required',
 				'product_price' => 'required|regex:/^\d*(\.\d{2})?$/',
-		        'filename' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+		        'filename'      => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
 	        ));
     		$data = $request->all();
 //    		$product_slug = str_slug($data['product_name'], '-');
@@ -169,9 +170,9 @@ class ProductController extends Controller
 		        $extension = $originalImage->getClientOriginalName();
 		        $nameImage = time()."_".rand(111, 9999).$extension;
 		        // Tao duong dan upload anh
-		        $small_image_path = public_path().'/uploads/small/';
-		        $thumbnail_image_path = public_path().'/uploads/thumbnail/';
-		        $large_image_path = public_path().'/uploads/images/'; 
+		        $small_image_path       = public_path().'/uploads/small/';
+		        $thumbnail_image_path   = public_path().'/uploads/thumbnail/';
+		        $large_image_path       = public_path().'/uploads/images/';
 		        // Luu large image
 		        $make_image->save($large_image_path.$nameImage);
 		        // Luu thumbnail image
