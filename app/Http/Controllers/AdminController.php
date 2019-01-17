@@ -15,7 +15,7 @@ class AdminController extends Controller
     public function login(Request $request){
     	if ( $request->isMethod('post') ) {
     		$data = $request->input();
-    		if ( \Auth::attempt(['email'=>$data['email'], 'password'=>$data['password'], 'admin'=>'1']) ) {
+    		if ( \Auth::attempt(['email'=>$data['email'], 'password'=>$data['password']]) ) {
     			// echo "Success"; die();
     			// Tao mot adminSession voi gia tri la $data['email']
     			Session::put('admin_session', $data['email']);
@@ -28,24 +28,32 @@ class AdminController extends Controller
     	return view('admin.admin_login');
     }
 
-    public function dashboard(){
-    	if ( Session::has('admin_session') ) {
-            $user = User::where(['email'=>Session::get('admin_session')])->first();
-            $count_user = count(User::get());
-            $count_category = count(Category::get());
-            $count_product = count(Product::get());
-            // echo "<pre>"; print_r($count_category); die;
-            return view('admin.dashboard')->with(compact('user'))
-                                        ->with(compact('count_user'))
-                                        ->with(compact('count_category'))
-                                        ->with(compact('count_product'));
-    	}else{
-    		return redirect('/admin')->with('flash_message_error', 'Bạn chưa đăng nhập! Vui lòng đăng nhập.');
-    	}
+    public function dashboard(Request $request){
+        if ($request){
+            $check_role = $request->user()->authorizeRoles(['supper admin', 'admin', 'employee', 'saler']);
+            if ($check_role == 1)
+            {
+                if ( Session::has('admin_session') ) {
+                    $user = User::where(['email'=>Session::get('admin_session')])->first();
+                    $count_user     = count(User::get());
+                    $count_category = count(Category::get());
+                    $count_product  = count(Product::get());
+                    Session::put('user_session', $user);
+                    // echo "<pre>"; print_r($count_category); die;
+                    return view('admin.dashboard')->with(compact('user', 'count_user', 'count_category', 'count_product'));
+                }else{
+                    return redirect('/admin')->with('flash_message_error', 'Bạn chưa đăng nhập! Vui lòng đăng nhập.');
+                }
+            }
+        }
     }
 
     public function settings(){
     	return view('admin.settings');
+    }
+
+    public function profile(){
+        return view('admin.profile');
     }
 
     public function chkPassword(Request $request){

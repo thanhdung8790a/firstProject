@@ -1,3 +1,8 @@
+<?php
+    // Kiem tra xem co phai la admin
+    //echo $user->hasRole('admin');
+?>
+
 @extends('layouts.adminLayout.admin_design')
 @section('content')
 

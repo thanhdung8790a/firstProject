@@ -11,9 +11,13 @@
 |
 */
 
- Route::get('/welcome', function () {
-     return view('welcome');
- });
+// Route::get('/welcome', function () {
+//     return view('welcome');
+// })->middleware('auth');
+
+Route::get('/welcome', function () {
+    return view('welcome');
+});
 
 Route::get('/', 'IndexController@index');
 Route::get('/category/{id}', 'IndexController@category');
@@ -31,6 +35,7 @@ Route::get('/posts', 'PostController@index');
 Route::group(['middleware'=> ['auth']], function(){
 	Route::get('/admin/dashboard', 'AdminController@dashboard');
 	Route::get('/admin/settings', 'AdminController@settings');
+    Route::get('/admin/profile', 'AdminController@profile');
 	Route::get('/admin/check-pwd', 'AdminController@chkPassword');
 	Route::match(['get', 'post'], '/admin/update-pwd', 'AdminController@updatePassword');
 

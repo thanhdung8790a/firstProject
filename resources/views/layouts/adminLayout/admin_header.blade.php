@@ -1,10 +1,8 @@
 <!--Header-part-->
 <div id="header">
-  <h1><a href="{{ url('admin/dashboard') }}">Hệ quản trị</a></h1>
+  <a href="{{ url('admin/dashboard') }}"><h1></h1></a>
 </div>
-<!--close-Header-part--> 
-
-
+<!--close-Header-part-->
 <!--top-Header-menu-->
 <div id="user-nav" class="navbar navbar-inverse">
   <ul class="nav">
@@ -12,11 +10,14 @@
       <a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle">
         <i class="icon icon-user"></i>  
         <span class="text">
-          User
+          <?php
+            $current_user = Session::get('user_session');
+            echo $current_user->display_name;
+            ?>
         </span><b class="caret"></b>
       </a>
       <ul class="dropdown-menu">
-        <li><a href="#"><i class="icon-user"></i>Hồ sơ</a></li>
+        <li><a href="{{ url('/admin/profile')  }}"><i class="icon-user"></i>Hồ sơ</a></li>
         <li class="divider"></li>
         <li><a href="{{ url('logout') }}"><i class="icon-key"></i>Đăng xuất</a></li>
       </ul>
