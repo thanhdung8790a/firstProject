@@ -25,6 +25,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::match(['get', 'post'], '/admin', 'AdminController@login');
 
+Route::get('/posts', 'PostController@index');
+
 // Router group admin
 Route::group(['middleware'=> ['auth']], function(){
 	Route::get('/admin/dashboard', 'AdminController@dashboard');
