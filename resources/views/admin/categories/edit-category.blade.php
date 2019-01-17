@@ -44,12 +44,19 @@
               <div class="control-group">
                 <label class="control-label">Thư mục cha</label>
                 <div class="controls">
-                <select name="parent_id" style="width: 220px;">
-                  @foreach($levels as $level)
-                  <option value="{{ $level->id }}" @if($level->id == $cat_detail->parent_id) selected @endif>{{ $level->name }}</option>
-                  @endforeach
-                </select>
-              </div>
+                  <select name="parent_id" style="width: 220px;">
+                      @if($cat_detail->parent_id != 0)
+                        @foreach($levels as $level)
+                            <option value="{{ $level->id }}" @if($level->id == $cat_detail->parent_id) selected @endif>{{ $level->name }}</option>
+                        @endforeach
+                      @else
+                        <option value="{{ $cat_detail->parent_id }}" >Không</option>
+                        @foreach($categories as $cat)
+                          <option value="{{ $cat->id }}" >{{ $cat->name }}</option>
+                        @endforeach
+                      @endif
+                  </select>
+                </div>
               </div>
               <div class="control-group">
                 <label class="control-label">Tên danh mục</label>
@@ -79,10 +86,8 @@
              </div>
             </div>
               <div class="form-actions">
-                <div class="control-label">
-                  <input type="reset" value="làm mới" class="btn btn-primary">
-                </div>
-                <div class="control-label">
+                <label class="control-label"></label>
+                <div class="controls">
                  <input type="submit" value="Cập nhật" class="btn btn-success"> 
                 </div>       
               </div>

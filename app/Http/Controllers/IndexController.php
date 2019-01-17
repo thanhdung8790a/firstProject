@@ -17,7 +17,7 @@ class IndexController extends Controller
         // echo "<pre>"; print_r($listFeaturesProducts); die;
         // Lay ra danh sach Category
         $categories = Category::where(['parent_id' => 0])->get();
-//        print_r($categories_menu); die;
+//        print_r($categories); die;
     	return view('index')->with(compact('listFeaturesProducts', 'categories'));
     }
 

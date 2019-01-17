@@ -106,12 +106,13 @@ class CategoryController extends Controller
 			}
 		}
 		$cat_detail = Category::where(['id' => $id])->first();
+//		print_r($cat_detail->parent_id); die;
+		$categories = Category::get();
 		$levels 	= Category::where(['parent_id' => 0])->get();
-		// echo "<pre>"; print_r($cat_detail); die;
+//		echo "<pre>"; print_r($levels); die;
 		// echo $id; die;
 		return view('admin.categories.edit-category')
-					->with(compact('levels'))
-					->with(compact('cat_detail'));
+					->with(compact('levels', 'cat_detail', 'categories'));
 	}
 
 	public function deleteCategory(Request $res, $id = null){
