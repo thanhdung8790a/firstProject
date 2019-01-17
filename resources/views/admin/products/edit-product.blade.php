@@ -80,16 +80,16 @@
                 </div>
               </div>
               <div class="control-group">
-              <label  class="control-label">Chọn ảnh đại diện</label>
-              <div class="controls">                
-                <div class="uploader" id="uniform-undefined">
-                  <input type="hidden" value="{{ $product_detail->product_image }}" name="product_image">
-                  <input type="file" name="filename" size="19" style="opacity: 0;">
+                <label  class="control-label">Chọn ảnh đại diện</label>
+                <div class="controls">
+                  <div class="uploader" id="uniform-undefined">
+                    <input type="hidden" value="{{ $product_detail->product_image }}" name="product_image">
+                    <input type="file" name="filename" size="19" style="opacity: 0;">
+                  </div>
+                  <img style="width: 40px;" src="/uploads/thumbnail/{{ $product_detail->product_image }}" style="" alt="">
+                  <a class="btn btn-inverse btn-mini" href="{{ url('admin/deleteProductImage/'.$product_detail->id) }}">Xóa ảnh đại diện</a>
                 </div>
-                <img style="width: 40px;" src="/uploads/thumbnail/{{ $product_detail->product_image }}" style="" alt="">
-                <a class="btn btn-inverse btn-mini" href="{{ url('admin/deleteProductImage/'.$product_detail->id) }}">Xóa ảnh đại diện</a>
               </div>
-            </div>
               <div class="form-actions">
                 <div class="control-label">
                   <input type="reset" value="làm mới" class="btn btn-primary">

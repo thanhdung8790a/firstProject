@@ -38,6 +38,10 @@ Route::group(['middleware'=> ['auth']], function(){
     Route::get('/admin/profile', 'AdminController@profile');
 	Route::get('/admin/check-pwd', 'AdminController@chkPassword');
 	Route::match(['get', 'post'], '/admin/update-pwd', 'AdminController@updatePassword');
+    Route::match(['get'], '/admin/deleteUserImage/{id}', 'AdminController@deleteUserImage');
+    Route::match(['get', 'post'], '/admin/update-thumbnail', 'AdminController@updateUserImage');
+    Route::match(['get', 'post'], '/admin/update-info', 'AdminController@updateUserInfo');
+    Route::match(['get', 'post'], '/admin/update-user-role', 'AdminController@updateUserRole');
 
 	// Categories routes (Admin)
 	Route::get('/admin/category', 'CategoryController@index');

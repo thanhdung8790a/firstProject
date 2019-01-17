@@ -67,6 +67,13 @@ class AdminController extends Controller
         }
     }
 
+    public function updateUserInfo(Request $request){
+        if ($request->isMethod('post')) {
+            $data = $request->all();
+            echo $data['id'];
+        }
+    }
+
     public function updatePassword(Request $request){
     	if ($request->isMethod('post')) {
     		$data = $request->all();
@@ -80,6 +87,17 @@ class AdminController extends Controller
     			return redirect('/admin/settings')->with('flash_message_error', 'Mật khẩu hiện tại không đúng');
     		}
     	}
+    }
+
+    public function updateUserImage(Request $request, $id = null){
+        if ($request->isMethod('post')) {
+            $data = $request->all();
+            echo $data['id'];
+        }
+    }
+
+    public function deleteUserImage(Request $request, $id = null){
+        echo $id; die;
     }
 
     public function logout(){
