@@ -70,7 +70,18 @@ class AdminController extends Controller
     public function updateUserInfo(Request $request){
         if ($request->isMethod('post')) {
             $data = $request->all();
-            echo $data['id'];
+            try{
+                $sql_query = User::where(['id'=>$data['id']])->update(['display_name'   =>$data['display_name'],
+                                                                        'fullname'      =>$data['fullname'],
+                                                                        'address'       =>$data['address'],
+                                                                        'phone'         =>$data['phone']]);
+                if ($sql_query){
+                    return redirect('/admin/dashboard')
+                        ->with('flash_message_success','Cập nhật thành công');
+                }
+            }catch (\Illuminate\Database\QueryException $e){
+                var_dump($e->getMessage()); die;
+            }
         }
     }
 

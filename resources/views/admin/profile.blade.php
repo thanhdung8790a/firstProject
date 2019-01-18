@@ -1,16 +1,52 @@
 @extends('layouts.adminLayout.admin_design')
 @section('content')
-
     <!--main-container-part-->
-
+    @if(Session::get('user_session'))
+        <?php $current_user = Session::get('user_session'); //echo $current_user; die; ?>
     <div id="content">
         <div id="content-header">
             <div id="breadcrumb"> <a href="{{ url('admin/dashboard') }}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a><a href="{{ url('admin/profile') }}" class="current">Thông tin tài khoản</a> </div>
-            <h1>Thông tin tài khoản</h1>
+            <h1>Thông tin tài khoản {{$current_user->display_name}}</h1>
         </div>
         <div class="container-fluid"><hr>
             <div class="row-fluid">
                 <div class="row-fluid">
+                    <div class="span12">
+                        <div class="container emp-profile">
+                            <form method="post">
+                                <div class="row">
+                                    <div class="span4">
+                                        <div class="profile-img">
+                                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt=""/>
+                                            <div class="file btn btn-lg btn-primary">
+                                                Thay đổi ảnh đại diện
+                                                <input type="file" name="file"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="span6">
+                                        <div class="profile-head">
+                                            <h5>
+                                                Kshiti Ghelani
+                                            </h5>
+                                            <h6>
+                                                Web Developer and Designer
+                                            </h6>
+                                            <p class="proile-rating">RANKINGS : <span>8/10</span></p>
+                                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                                <li class="nav-item">
+                                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Timeline</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                     <div class="span12">
                         <div class="widget-box">
                             <div class="widget-title">
@@ -22,8 +58,6 @@
                                 </ul>
                             </div>
                             <div class="widget-content tab-content">
-                                @if(Session::get('user_session'))
-                                    <?php $current_user = Session::get('user_session'); //echo $current_user; die; ?>
                                 <div id="tab1" class="tab-pane active">
                                     <form class="form-horizontal" method="post" action="{{ url('/admin/update-info') }}" name="" id="" novalidate="novalidate">{{ csrf_field() }}
                                         <input type="hidden" name="id" value="{{$current_user->id}}">
@@ -48,13 +82,13 @@
                                         <div class="control-group">
                                             <label class="control-label">Địa chỉ</label>
                                             <div class="controls">
-                                                <input type="text" value="{{$current_user->address}}" name="address" id="address" disabled="true" />
+                                                <input type="text" value="{{$current_user->address}}" name="address" id="address" />
                                             </div>
                                         </div>
                                         <div class="control-group">
                                             <label class="control-label">Số điện thoại</label>
                                             <div class="controls">
-                                                <input type="text" value="{{$current_user->phone}}" name="phone" id="phone" disabled="true" />
+                                                <input type="text" value="{{$current_user->phone}}" name="phone" id="phone" />
                                             </div>
                                         </div>
                                         <div class="control-group">

@@ -16,6 +16,10 @@
 // })->middleware('auth');
 
 Route::get('/welcome', function () {
+//    Debugbar::info($object);
+//    Debugbar::error('Error!');
+//    Debugbar::warning('Watch out…');
+//    Debugbar::addMessage('Another message', 'mylabel');
     return view('welcome');
 });
 
@@ -26,12 +30,11 @@ Route::get('/products/{product_slug}', 'ProductController@showProductWithId');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
 Route::match(['get', 'post'], '/admin', 'AdminController@login');
-
 Route::get('/posts', 'PostController@index');
 
 // Router group admin
+// Kiểm tra xem tài khoản đã đăng nhập chưa
 Route::group(['middleware'=> ['auth']], function(){
 	Route::get('/admin/dashboard', 'AdminController@dashboard');
 	Route::get('/admin/settings', 'AdminController@settings');
@@ -61,6 +64,5 @@ Route::group(['middleware'=> ['auth']], function(){
 	Route::match(['get', 'post'], '/admin/add-attributes/{id}', 'ProductController@addAttributes');
 	Route::get('/admin/delete-product-attributes/{id}', 'ProductController@deleteProductAttributes');
 });
-
-
+// Thoát khỏi hệ quản trị
 Route::get('/logout', 'AdminController@logout');
