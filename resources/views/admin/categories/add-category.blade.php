@@ -44,7 +44,7 @@
               <div class="alert alert-danger">{{ session('error') }}</div>
             @endif
 
-              <form class="form-horizontal" method="post" action="{{ url('admin/add-category') }}" name="add_category" id="add_category" novalidate="novalidate" enctype="multipart/form-data">{{ csrf_field() }}
+              <form class="form-horizontal" method="post" action="{{ url('admin/add-category') }}" name="form_validate" id="form_validate" novalidate="novalidate" enctype="multipart/form-data">{{ csrf_field() }}
               <div class="control-group">
               <label class="control-label">Chọn danh mục cha</label>
               <div class="controls">

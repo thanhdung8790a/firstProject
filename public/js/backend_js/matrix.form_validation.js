@@ -26,10 +26,14 @@ $(document).ready(function(){
 	$('select').select2();
 
 	// Add Category Validation
-    $("#add_category").validate({
+    $("#form_validate").validate({
 		rules:{
 			required:{
 				required:true
+			},
+			display_name:{
+				required:true,
+				minlength:2
 			},
 			cat_name:{
 				required:true,
@@ -43,7 +47,8 @@ $(document).ready(function(){
 				required: true
 			},
 			product_code:{
-				required: true
+				required: true,
+				number: true
 			},
 			product_color:{
 				required: true

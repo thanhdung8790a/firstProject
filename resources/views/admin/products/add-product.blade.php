@@ -40,7 +40,7 @@
               </ul>
             </div>
             @endif
-              <form class="form-horizontal" method="post" action="{{ url('admin/add-product') }}" name="add_category" id="add_category" novalidate="novalidate" enctype="multipart/form-data">{{ csrf_field() }}
+              <form class="form-horizontal" method="post" action="{{ url('admin/add-product') }}" name="form_validate" id="form_validate" novalidate="novalidate" enctype="multipart/form-data">{{ csrf_field() }}
               <div class="control-group">
               <label class="control-label">Chọn danh mục</label>
               <div class="controls">

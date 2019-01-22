@@ -5,7 +5,7 @@
 
 @extends('layouts.adminLayout.admin_design')
 @section('content')
-
+aaaaaaaaaaaaaa
 <!--main-container-part-->
 <div id="content">
 <!--breadcrumbs-->
