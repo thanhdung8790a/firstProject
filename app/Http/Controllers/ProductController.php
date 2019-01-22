@@ -33,13 +33,26 @@ class ProductController extends Controller
 
     public function addProduct(Request $request){
     	if( $request->isMethod('post') ){
-    		$this->validate($request, array(
+    		
+    		$rules = [
 				'product_name'  => 'required',
 				'product_code'  => 'required',
 				'product_color' => 'required',
 				'product_price' => 'required|regex:/^\d*(\.\d{2})?$/',
 		        'filename'      => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-	        ));
+    		];
+
+	        $customMessages = [
+	    		'product_name.required' 	=> 'Tên sản phẩm không được để trống',
+	    		'product_code.required' 	=> 'We need your email address also',
+	        	'product_color.required'  	=> 'c\'mon, you want to contact me without saying anything?',
+	        	'product_price.required'  	=> 'c\'mon, you want to contact me without saying anything?',
+	        	'product_price.regex'  		=> 'c\'mon, you want to contact me without saying anything?',
+	        	'filename.image'  			=> 'c\'mon, you want to contact me without saying anything?',
+	    	];
+
+	    	$this->validate($request, $rules, $customMessages);
+
     		$data = $request->all();
     		// echo $data['product_price']; die;
     		if (empty($data['category_id'])) {

@@ -29,17 +29,6 @@
                     <strong>{{ $message }}</strong>
             </div>
             @endif
-
-            @if (count($errors) > 0)
-            <div class="alert alert-danger">
-              <strong>Whoops!</strong> There were some problems with your input.<br><br>
-              <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-              </ul>
-            </div>
-            @endif
               <form class="form-horizontal" method="post" action="{{ url('admin/add-product') }}" name="form_validate" id="form_validate" novalidate="novalidate" enctype="multipart/form-data">{{ csrf_field() }}
               <div class="control-group">
               <label class="control-label">Chọn danh mục</label>
@@ -53,18 +42,21 @@
                 <label class="control-label">Tên danh sản phẩm</label>
                 <div class="controls">
                   <input type="text" name="product_name" id="product_name" placeholder="Tên danh mục" value="">
+                  <span class="help-inline">{{ $errors->first('product_name') }}</span>
                 </div>
               </div>
               <div class="control-group">
                 <label class="control-label">Mã sản phẩm</label>
                 <div class="controls">
                   <input type="text" name="product_code" id="product_code" placeholder="Mã sản phẩm" value="">
+                  <span class="help-inline">{{ $errors->first('product_code') }}</span>
                 </div>
               </div>
               <div class="control-group">
                 <label class="control-label">Màu sắc</label>
                 <div class="controls">
                   <input type="text" name="product_color" id="product_color" placeholder="Màu sắc của sản phẩm" value="">
+                  <span class="help-inline">{{ $errors->first('product_color') }}</span>
                 </div>
               </div>
               <div class="control-group">
@@ -77,6 +69,7 @@
                 <label class="control-label">Giá sản phẩm</label>
                 <div class="controls">
                   <input type="text" name="product_price" id="product_price" placeholder="Giá sản phẩm: 900" value="">
+                  <span class="help-inline">{{ $errors->first('product_price') }}</span>
                 </div>
               </div>
               <div class="control-group">
